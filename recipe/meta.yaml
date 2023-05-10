@@ -1,10 +1,5 @@
 {% set name = "lightfm" %}
 {% set version = "1.17" %}
-{% set numpy = "1.19.5" %}  # [py<=39 and not (osx and arm64)]
-{% set numpy = "1.21" %}  # [py<=39 and (osx and arm64)]
-{% set numpy = "1.21" %}  # [py>39 and py<311]
-{% set numpy = "1.23" %}  # [py>=311]
-
 
 package:
   name: {{ name|lower }}
@@ -30,14 +25,13 @@ requirements:
     - setuptools
     - wheel
     - cython
-    - numpy {{ numpy }} 
-    - scipy 1.9.3
-    - requests 2.29.0
+
   run:
     - python
-    - {{ pin_compatible('numpy') }}
     - _openmp_mutex                   # [linux]
     - scipy >=0.17
+    - requests
+    - numpy 
     - requests
     - scikit-learn
 
